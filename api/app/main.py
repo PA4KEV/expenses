@@ -1,31 +1,28 @@
+from contextlib import closing
 from flask_api import FlaskAPI, status, request
-import mysql.connector
+
+from database.Connection import get_connection
 
 app = FlaskAPI(__name__)
-
-
-def create_connection():
-    try:
-        conn = mysql.connector.connect(
-            host="exp_db",
-            user="root",
-            password="password",
-            database="mydb"
-        )
-
-        return conn
-    except mysql.connector.Error as e:
-        return f"Error connecting to MariaDB: {e}"
-
 
 @app.route("/")
 def hello():
     return {"message": "Hello, World!"}
 
 
-@app.route("/connect")
-def connect():
-    return {"message": f"Connection {create_connection()}"}
+@app.route("/connection_test")
+def connection_test():
+    try:
+        with closing(get_connection()) as conn:
+            with closing(conn.cursor()) as cursor:
+                query = "SELECT * FROM expenses LIMIT 1"
+                cursor.execute(query)
+                row = cursor.fetchone()
+                return {"message": f"Connection test OK: {row}"}
+    except Exception as ex:
+        return {"message": f"Failed to create connection! {ex}"}
+
+
 
 @app.route("/add", methods=["POST"])
 def add():
