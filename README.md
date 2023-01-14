@@ -1,0 +1,2 @@
+# expenses
+expenditure tracking application
