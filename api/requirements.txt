@@ -1,0 +1,4 @@
+Flask-API==3.0.post1
+plotly==5.10.0
+six==1.16.0
+tenacity==8.0.1
