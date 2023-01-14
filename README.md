@@ -16,6 +16,15 @@ Flask-API is used.
 
 ## Docker
 
+
+### API
+
 `docker build -t exp_api:latest api/`
 
 `docker run -p 80:5000 -d --name exp_api exp_api`
+
+### Database
+
+`docker build -t exp_db:latest config/database/`
+
+`docker run -d --name exp_db exp_db`
