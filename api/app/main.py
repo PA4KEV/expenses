@@ -1,4 +1,6 @@
 from contextlib import closing
+
+from flask import jsonify
 from flask_api import FlaskAPI, status, request
 
 from database.Connection import get_connection
@@ -37,9 +39,15 @@ def get_expenses(year):
 
                 results = cursor.fetchall()
                 for expense in results:
-                    expenses.append(expense)
+                    expenses.append({
+                        "id": expense[0],
+                        "description": expense[1],
+                        "source": expense[2],
+                        "date": expense[3],
+                        "amount": expense[4],
+                    })
 
-                return {"message": f"Expenses: {expenses}"}
+                return jsonify(expenses), status.HTTP_200_OK
     except Exception as ex:
         return {"message": f"Failed to create connection! {ex}"}
 
