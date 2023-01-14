@@ -17,11 +17,31 @@ def connection_test():
             with closing(conn.cursor()) as cursor:
                 query = "SELECT * FROM expenses LIMIT 1"
                 cursor.execute(query)
+
                 row = cursor.fetchone()
+
                 return {"message": f"Connection test OK: {row}"}
     except Exception as ex:
         return {"message": f"Failed to create connection! {ex}"}
 
+
+@app.route("/get_expenses/year/<int:year>", methods=["GET"])
+def get_expenses(year):
+    expenses = []
+    try:
+        with closing(get_connection()) as conn:
+            with closing(conn.cursor()) as cursor:
+                query = f"SELECT * FROM expenses \
+                WHERE YEAR(date) = '{year}';"
+                cursor.execute(query)
+
+                results = cursor.fetchall()
+                for expense in results:
+                    expenses.append(expense)
+
+                return {"message": f"Expenses: {expenses}"}
+    except Exception as ex:
+        return {"message": f"Failed to create connection! {ex}"}
 
 
 @app.route("/add", methods=["POST"])
