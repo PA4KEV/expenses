@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask_api import FlaskAPI, status, request
 
 import endpoints.expenses
@@ -15,17 +17,22 @@ def connection_test():
 
 
 @app.route("/get_expenses/year/<int:year>", methods=["GET"])
-def get_expenses(year):
+def get_expenses_by_year(year):
     return endpoints.expenses.get_expenses_by_year(year)
 
 
-@app.route("/add", methods=["POST"])
-def add():
-    data = request.data
-    x = data["x"]
-    y = data["y"]
-    result = x + y
-    return {"result": result}, status.HTTP_200_OK
+@app.route("/insert_new_expense", methods=["POST"])
+def insert_new_expense():
+    # data = request.data
+    # x = data["x"]
+    # y = data["y"]
+    return endpoints.expenses.set_expense(
+        'Test description',
+        'Test Source',
+        12.34,
+        datetime.strptime("2023-01-15 10:09:25", "%Y-%m-%d %H:%M:%S")
+    )
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
