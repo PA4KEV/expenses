@@ -10,7 +10,7 @@ class DataRetrieve extends React.Component {
 
     componentDidMount() {
         let year = 2023;
-        const baseURL = "/get_expenses/year/" + year;
+        const baseURL = "http://localhost:8050/get_expenses/year/" + year;
 
         axios.get(baseURL)
             .then(res => {
