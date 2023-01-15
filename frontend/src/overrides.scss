@@ -1,0 +1,22 @@
+// change the theme
+$theme-colors: (
+  "primary": #F2622E,
+  "secondary": #F28705,
+  "success": #038c8c,  
+  "danger": #ff4136,
+  "warning": #000000,
+  "info": #000000,
+  "light": #eeeeee,
+  "dark": #000000,
+  "muted": #000000
+);
+
+$link-color:                 #024059;
+$link-hover-color:           #038c8c;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+// Core variables and mixins
+// @import "variables";
+// @import "mixins";
