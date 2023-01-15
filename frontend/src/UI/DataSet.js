@@ -98,7 +98,7 @@ class DataSet extends React.Component {
 
             <div className='form-group'>
                 <label for="insert-description">Time</label>
-                <input class="form-control" id="insert-time" type="text" name="time" onChange={this.handleChangeDate} aria-describedby="time-help"/>
+                <input class="form-control" id="insert-time" type="text" name="time" onChange={this.handleChangeTime} aria-describedby="time-help"/>
                 <small id="time-help" class="form-text text-muted">Enter the time when the expense was made in 24h format. e.g. 14:45</small>
             </div>
 
