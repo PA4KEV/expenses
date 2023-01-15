@@ -1,32 +1,41 @@
 import React from 'react';
 import axios from 'axios';
 
-const DataRetrieve = (props) => {
-    const [expense, setPost] = React.useState(null);
 
-    let year = 2023;
-    const baseURL = "/get_expenses/year/" + year;
 
-    React.useEffect(() => {
-        axios.get(baseURL).then((response) => {
-          setPost(response.data);
-        });
-      }, []);
-    
-    if (!expense) return( <div><p>Unable to retrieve expense!</p></div>);
+class DataRetrieve extends React.Component {
+    state = {
+      expenses: []
+    }
 
-    console.log(expense);
+    componentDidMount() {
+        let year = 2023;
+        const baseURL = "/get_expenses/year/" + year;
 
-    return (
+        axios.get(baseURL)
+            .then(res => {
+                const expenses = res.data;
+                this.setState({ expenses });
+            })
+    }
+
+    render() {
+      return (
         <div>
-            <ul>
-                <li>{expense[0].description}</li>
-                <li>{expense[0].source}</li>
-                <li>{expense[0].amount}</li>
-                <li>{expense[0].date}</li>
-            </ul>
+          {
+            this.state.expenses
+              .map(expense =>
+                <ul key={expense.id}>
+                    <li>{expense.description}</li>
+                    <li>{expense.amount}</li>
+                    <li>{expense.source}</li>
+                    <li>{expense.date}</li>
+                </ul>
+              )
+          }
         </div>
-    )
-}
+      )
+    }
+  }
 
 export default DataRetrieve;
