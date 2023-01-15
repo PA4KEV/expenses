@@ -1,6 +1,7 @@
 from datetime import datetime
 
-from flask_api import FlaskAPI, status, request
+from flask import request
+from flask_api import FlaskAPI
 
 import endpoints.expenses
 
@@ -23,14 +24,17 @@ def get_expenses_by_year(year):
 
 @app.route("/insert_new_expense", methods=["POST"])
 def insert_new_expense():
-    # data = request.data
-    # x = data["x"]
-    # y = data["y"]
+    description = request.form["description"]
+    source = request.form["source"]
+    amount = request.form["amount"]
+    date = request.form["date"]
+    time = request.form["time"]
+
     return endpoints.expenses.set_expense(
-        'Test description',
-        'Test Source',
-        12.34,
-        datetime.strptime("2023-01-15 10:09:25", "%Y-%m-%d %H:%M:%S")
+        description,
+        source,
+        float("{:.2f}".format(float(amount))),
+        datetime.strptime(f"{date} {time}", "%Y-%m-%d %H:%M")
     )
 
 
