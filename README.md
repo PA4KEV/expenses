@@ -52,3 +52,4 @@ VALUES
 ## External links
 
 * [Flask request data](https://stackoverflow.com/questions/10434599/get-the-data-received-in-a-flask-request)
+* [avoid CORS errors on localhost](https://medium.com/swlh/avoiding-cors-errors-on-localhost-in-2020-5a656ed8cefa)
