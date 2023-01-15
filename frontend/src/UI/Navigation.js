@@ -15,6 +15,10 @@ const Navigation = () => {
                         <li className="nav-item">
                             <Link to="/get_expenses" className="nav-link">Get expenses</Link>
                         </li>
+
+                        <li className="nav-item">
+                            <Link to="/set_expenses" className="nav-link">Add expense</Link>
+                        </li>
                     </ul>
 
                 </div>

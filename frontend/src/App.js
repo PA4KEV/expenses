@@ -15,10 +15,9 @@ function App() {
       <Router>
         <Navigation/>
 
-        <DataSet />
-
         <Routes>
-            <Route exact path='/get_expenses' element={<DataRetrieve />}></Route>         
+            <Route exact path='/get_expenses' element={<DataRetrieve />}></Route>
+            <Route exact path='/set_expenses' element={<DataSet />}></Route>
         </Routes>
         </Router>
     </div>
