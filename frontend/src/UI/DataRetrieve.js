@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
-
+import Expense from '../expenses/Expense';
 
 class DataRetrieve extends React.Component {
     state = {
@@ -25,12 +24,12 @@ class DataRetrieve extends React.Component {
           {
             this.state.expenses
               .map(expense =>
-                <ul key={expense.id}>
-                    <li>{expense.description}</li>
-                    <li>{expense.amount}</li>
-                    <li>{expense.source}</li>
-                    <li>{expense.date}</li>
-                </ul>
+                <Expense
+                description={expense.description}
+                source={expense.source}
+                amount={expense.amount}
+                date={expense.date}
+                />
               )
           }
         </div>
