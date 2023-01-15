@@ -38,7 +38,7 @@ def get_expenses_by_year(year):
                         "amount": expense[4],
                     })
 
-                return jsonify(expenses), status.HTTP_200_OK
+                return expenses
     except Exception as ex:
         return {"message": f"Failed to create connection! {ex}"}
 
@@ -60,8 +60,8 @@ def set_expense(
 
                 if cursor.rowcount > 0:
                     conn.commit()
-                    return {"message": f"New expense inserted. Rows affected: {cursor.rowcount}"}, status.HTTP_200_OK
+                    return {"message": f"New expense inserted. Rows affected: {cursor.rowcount}"}
                 else:
-                    return {"message": f"Unable to insert new record!"}, status.HTTP_200_OK
+                    return {"message": f"Unable to insert new record!"}
     except Exception as ex:
         return {"message": f"Error when creating a new expense! {ex}"}
