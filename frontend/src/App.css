@@ -1,3 +1,12 @@
-.App {
-  text-align: center;
+body {
+    background-color: white;
+}
+
+.app {
+    background-color: whitesmoke;
+    border-left: #cfcfcf 1px solid;
+    border-right: #cfcfcf 1px solid;
+    border-bottom: #cfcfcf 1px solid;
+
+    padding: 0;
 }

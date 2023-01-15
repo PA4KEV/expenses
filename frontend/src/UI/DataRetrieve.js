@@ -20,19 +20,29 @@ class DataRetrieve extends React.Component {
 
     render() {
       return (
-        <div>
-          {
-            this.state.expenses
-              .map(expense =>
-                <Expense
-                description={expense.description}
-                source={expense.source}
-                amount={expense.amount}
-                date={expense.date}
-                />
-              )
-          }
-        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">Description</th>
+                <th scope="col">Source</th>
+                <th scope="col">amount</th>
+                <th scope="col">date</th>
+                </tr>
+            </thead>
+            <tbody>
+            {
+                this.state.expenses
+                .map(expense =>
+                    <Expense
+                    description={expense.description}
+                    source={expense.source}
+                    amount={expense.amount}
+                    date={expense.date}
+                    />
+                )
+            }
+          </tbody>
+        </table>
       )
     }
   }

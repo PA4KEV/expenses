@@ -4,6 +4,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 import './App.css';
+
 import DataRetrieve from './UI/DataRetrieve';
 import DataSet from './UI/DataSet';
 import Navigation from './UI/Navigation';
@@ -11,7 +12,7 @@ import Navigation from './UI/Navigation';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app container-md">
       <Router>
         <Navigation/>
 
